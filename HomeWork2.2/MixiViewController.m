@@ -18,12 +18,33 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.navigationItem.title = [NSString stringWithFormat:@"%d", [self.navigationController.viewControllers count]];
+
+    UIBarButtonItem *pushButton = [[UIBarButtonItem alloc] initWithTitle:@"push" style:UIBarButtonItemStylePlain target:self action:@selector(pressPushButton)];
+    self.navigationItem.rightBarButtonItem = pushButton;
+
+    if(self.navigationController.viewControllers.count > 1){
+        UIBarButtonItem *popButton = [[UIBarButtonItem alloc] initWithTitle:@"pop" style:UIBarButtonItemStylePlain target:self action:@selector(pressPopButton)];
+        self.navigationItem.leftBarButtonItem = popButton;
+        self.navigationItem.leftItemsSupplementBackButton = YES;
+
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)pressPushButton
+{
+    [self.navigationController pushViewController:[[MixiViewController alloc] init] animated:YES];
+}
+
+- (void)pressPopButton
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

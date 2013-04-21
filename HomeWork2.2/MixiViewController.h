@@ -10,4 +10,7 @@
 
 @interface MixiViewController : UIViewController
 
+- (void)pressPushButton;
+- (void)pressPopButton;
+
 @end
